@@ -7,6 +7,7 @@
     <p class="text-gray-600">Cantidad: <span>1000</span></p>
     <p class="text-gray-600">Interés: <span>100 (10%)</span></p>
     <p class="text-gray-600">Pagos: <span>1 de 5</span></p>
+    <p class="text-gray-600">Fecha: <span>11/22/33</span></p>
     <div class="flex pt-2 gap-4">
       <RouterLink
         :to="{ name: 'edit-loan', params: { id: 1 }}"
