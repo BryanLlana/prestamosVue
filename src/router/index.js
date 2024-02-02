@@ -15,9 +15,34 @@ const router = createRouter({
           component: () => import('@/views/CustomersView.vue')
         },
         {
+          path: '/clientes/new',
+          name: 'new-customer',
+          component: () => import('@/views/CustomerNewView.vue')
+        },
+        {
+          path: '/clientes/edit/:id',
+          name: 'edit-customer',
+          component: () => import('@/views/CustomerEditView.vue')
+        },
+        {
           path: '/prestamos',
           name: 'loans',
           component: () => import('@/views/LoansView.vue')
+        },
+        {
+          path: '/prestamos/new',
+          name: 'new-loan',
+          component: () => import('@/views/LoanNewView.vue')
+        },
+        {
+          path: '/prestamos/edit/:id',
+          name: 'edit-loan',
+          component: () => import('@/views/LoanEditView.vue')
+        },
+        {
+          path: '/pagos/:id',
+          name: 'payments',
+          component: () => import('@/views/PaymentsView.vue')
         }
       ]
     }
