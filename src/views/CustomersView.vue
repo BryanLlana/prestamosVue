@@ -1,6 +1,9 @@
 <script setup>
 import Customer from '@/components/Customer.vue';
 import { RouterLink } from 'vue-router';
+import { useCustomerStore } from '@/stores/customer';
+
+const customerStore = useCustomerStore()
 </script>
 
 <template>
@@ -15,7 +18,11 @@ import { RouterLink } from 'vue-router';
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-3">
-      <Customer />
+      <Customer 
+        v-for="customer in customerStore.customers"
+        :customer="customer"
+        :key="customer.id"
+      />
     </div>
   </div>
 </template>
