@@ -17,7 +17,7 @@ defineProps({
     <p class="text-gray-600" v-if="customer.preference">Referencia: <span>{{ customer.preference }}</span></p>
     <div class="flex gap-4 pt-2">
       <RouterLink
-        :to="{ name: 'edit-customer', params: { id: 1 }}"
+        :to="{ name: 'edit-customer', params: { id: customer.id }}"
         class="bg-green-400 py-1 px-3 rounded-md text-center"
       >Editar
       </RouterLink>

@@ -6,5 +6,11 @@ export const customerApi = {
   },
   getCostumers: async () => {
     return await api.get('/customers')
+  },
+  getCustomerFindById: async id => {
+    return await api.get(`/customers/${id}`)
+  },
+  updateCustomerById: async (id, data) => {
+    return await api.patch(`/customers/${id}`, data)
   }
 }

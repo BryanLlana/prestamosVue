@@ -12,6 +12,14 @@ export const useCustomerStore = defineStore('customer', () => {
     phone: '',
     reference: ''
   })
+  const customerEdit = reactive({
+    id: '',
+    name: '',
+    lastName: '',
+    address: '',
+    phone: '',
+    reference: ''
+  })
   const errorsInput = ref({})
   const alert = reactive({
     message: '',
@@ -30,6 +38,7 @@ export const useCustomerStore = defineStore('customer', () => {
 
   const createCustomer = async e => {
     e.preventDefault()
+    errorsInput.value = {}
     try {
       const { data } = await customerApi.createCustomer(customer) 
       alert.message = data.message
@@ -45,10 +54,41 @@ export const useCustomerStore = defineStore('customer', () => {
     }
   }
 
+  const getCustomerFindById = async id => {
+    try {
+      const { data } = await customerApi.getCustomerFindById(id)
+      Object.assign(customerEdit, data.customer)
+    } catch (error) {
+      router.push({ name: 'customers' })
+    }
+  }
+
+  const updateCustomerById = async e => {
+    e.preventDefault()
+    errorsInput.value = {}
+    try {
+      const { id, ...values } = customerEdit
+      const { data } = await customerApi.updateCustomerById(id, values)
+      alert.message = data.message
+      customers.value = customers.value.map(customer => customer.id === id ? data.customer : customer)
+
+      setTimeout(() => {
+        alert.message = ''
+        router.push({ name: 'customers' })
+      }, 3000)
+    } catch (error) {
+      const errors = error.response.data.errors ?? ''
+      if (errors) errorsInput.value = errors
+    }
+  }
+ 
   return {
     customers,
     customer,
+    customerEdit,
     createCustomer,
+    getCustomerFindById,
+    updateCustomerById,
     errorsInput,
     alert
   }
