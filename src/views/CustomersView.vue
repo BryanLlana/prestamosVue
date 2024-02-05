@@ -2,6 +2,7 @@
 import Customer from '@/components/Customer.vue';
 import { RouterLink } from 'vue-router';
 import { useCustomerStore } from '@/stores/customer';
+import Alerta from '@/components/Alerta.vue';
 
 const customerStore = useCustomerStore()
 </script>
@@ -16,6 +17,10 @@ const customerStore = useCustomerStore()
       >Nuevo Cliente
       </RouterLink>
     </div>
+
+    <Alerta v-if="customerStore.alert.message" :error="customerStore.alert.error">
+      {{ customerStore.alert.message }}
+    </Alerta>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-3">
       <Customer 

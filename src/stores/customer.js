@@ -81,6 +81,20 @@ export const useCustomerStore = defineStore('customer', () => {
       if (errors) errorsInput.value = errors
     }
   }
+
+  const deleteCustomerById = async id => {
+    try {
+      const { data } = await customerApi.deleteCustomerById(id)
+      alert.message = data.message
+      customers.value = customers.value.filter(customer => customer.id !== id)
+
+      setTimeout(() => {
+        alert.message = ''
+      }, 3000)
+    } catch (error) {
+      console.log(error)
+    }
+  }
  
   return {
     customers,
@@ -89,6 +103,7 @@ export const useCustomerStore = defineStore('customer', () => {
     createCustomer,
     getCustomerFindById,
     updateCustomerById,
+    deleteCustomerById,
     errorsInput,
     alert
   }

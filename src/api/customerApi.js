@@ -12,5 +12,8 @@ export const customerApi = {
   },
   updateCustomerById: async (id, data) => {
     return await api.patch(`/customers/${id}`, data)
+  },
+  deleteCustomerById: async id => {
+    return await api.delete(`/customers/${id}`)
   }
 }
