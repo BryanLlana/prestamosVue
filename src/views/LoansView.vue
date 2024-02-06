@@ -1,6 +1,7 @@
 <script setup>
 import Loan from '@/components/Loan.vue';
 import { useLoanStore } from '@/stores/loan';
+import Alerta from '@/components/Alerta.vue';
 const loanStore = useLoanStore()
 </script>
 
@@ -15,7 +16,12 @@ const loanStore = useLoanStore()
       </RouterLink>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-3">
+    <Alerta v-if="loanStore.alert.message" :error="loanStore.alert.error">
+      {{ loanStore.alert.message }}
+    </Alerta>
+
+    <p v-if="loanStore.loans.length < 1" class="font-semibold text-center mt-5">No hay préstamos</p>
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-3">
       <Loan
         v-for="loan in loanStore.loans"
         :loan="loan"

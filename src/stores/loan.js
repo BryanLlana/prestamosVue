@@ -35,9 +35,10 @@ export const useLoanStore = defineStore('loan', () => {
     e.preventDefault()
     errorsInput.value = {}
     try {
+      const date = loan.date ? convertToDDMMYYYY(loan.date) : ''
       const { data } = await loanApi.createLoan({
         ...loan,
-        date: convertToDDMMYYYY(loan.date)
+        date
       }) 
       alert.message = data.message
       loans.value = [...loans.value, data.loan]
@@ -70,6 +71,22 @@ export const useLoanStore = defineStore('loan', () => {
     }
   }
 
+  const deleteLoan = async id => {
+    if (confirm('¿Estás seguro en eliminar un préstamo?')) {
+      try {
+        const { data } = await loanApi.deleteLoan(id)
+        alert.message = data.message
+        loans.value = loans.value.filter(loan => loan.id !== id)
+  
+        setTimeout(() => {
+          alert.message = ''
+        }, 3000)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
   const countPaymentsCompleted = computed(() => {
     return payments => payments.filter(p => p.state === true).length
   })
@@ -82,6 +99,7 @@ export const useLoanStore = defineStore('loan', () => {
     errorsInput,
     alert,
     loanPagos,
-    getLoan
+    getLoan,
+    deleteLoan
   }
 })

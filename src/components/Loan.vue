@@ -24,6 +24,7 @@ const loanStore = useLoanStore()
       >Ver Pagos
     </RouterLink>
     <button 
+      @click="loanStore.deleteLoan(loan.id)"
       type="button"
       class="bg-red-400 py-1 px-3 rounded-md text-center"
     >Eliminar

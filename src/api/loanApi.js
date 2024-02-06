@@ -9,5 +9,8 @@ export const loanApi = {
   },
   getLoan: async id => {
     return await api.get(`/loans/${id}`)
+  },
+  deleteLoan: async id => {
+    return await api.delete(`/loans/${id}`)
   }
 }

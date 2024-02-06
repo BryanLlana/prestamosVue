@@ -56,6 +56,10 @@ export const useCustomerStore = defineStore('customer', () => {
     } catch (error) {
       const errors = error.response.data.errors ?? ''
       if (errors) errorsInput.value = errors
+
+      setTimeout(() => {
+        errorsInput.value = {}
+      }, 3000)
     }
   }
 
@@ -88,16 +92,18 @@ export const useCustomerStore = defineStore('customer', () => {
   }
 
   const deleteCustomerById = async id => {
-    try {
-      const { data } = await customerApi.deleteCustomerById(id)
-      alert.message = data.message
-      customers.value = customers.value.filter(customer => customer.id !== id)
-
-      setTimeout(() => {
-        alert.message = ''
-      }, 3000)
-    } catch (error) {
-      console.log(error)
+    if (confirm('¿Estás seguro en eliminar un cliente?')) {
+      try {
+        const { data } = await customerApi.deleteCustomerById(id)
+        alert.message = data.message
+        customers.value = customers.value.filter(customer => customer.id !== id)
+  
+        setTimeout(() => {
+          alert.message = ''
+        }, 3000)
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
  

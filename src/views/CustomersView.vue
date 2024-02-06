@@ -22,7 +22,8 @@ const customerStore = useCustomerStore()
       {{ customerStore.alert.message }}
     </Alerta>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-3">
+    <p v-if="customerStore.customers.length < 1" class="font-semibold text-center mt-5">No hay clientes</p>
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-3">
       <Customer 
         v-for="customer in customerStore.customers"
         :customer="customer"
