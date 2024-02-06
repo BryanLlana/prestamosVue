@@ -2,6 +2,7 @@
 import { RouterLink, useRoute } from 'vue-router';
 import { usePaymentStore } from '@/stores/payment'
 import { onMounted } from 'vue';
+import Alerta from '@/components/Alerta.vue';
 
 const paymentStore = usePaymentStore()
 const route = useRoute()
@@ -21,20 +22,20 @@ onMounted(async () => {
       </RouterLink>
     </div>
 
-    <!-- <Alerta v-if="loanStore.alert.message" :error="loanStore.alert.error">
-      {{ loanStore.alert.message }}
-    </Alerta> -->
+    <Alerta v-if="paymentStore.alert?.message" :error="paymentStore.alert?.error">
+      {{ paymentStore.alert?.message }}
+    </Alerta>
 
-    <form class="mt-10 md:w-[800px] md:mx-auto">
+    <form @submit="paymentStore.updatePayment" class="mt-10 md:w-[800px] md:mx-auto">
       <div class="mb-4">
         <label for="cantidad" class="block text-gray-700 text-sm font-bold mb-2">Monto:</label>
         <input
+          disabled
           v-model="paymentStore.payment.amount"
           type="number"
           id="cantidad"
           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
         >
-        <!-- <AlertaInput v-if="loanStore.errorsInput.amount">{{ loanStore.errorsInput.amount }}</AlertaInput> -->
       </div>
 
       <div class="mb-4">
