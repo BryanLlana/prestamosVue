@@ -5,9 +5,10 @@ import { useRoute } from 'vue-router';
 import Payment from '@/components/Payment.vue'
 const loanStore = useLoanStore()
 const route = useRoute()
-
+let n = 1
 onMounted(() => {
   loanStore.getLoan(route.params.id)
+  n = 1
 })
 </script>
 
@@ -23,6 +24,7 @@ onMounted(() => {
     <ul class="space-y-4">
       <Payment 
         v-for="payment in loanStore.loanPagos.payments"
+        :n="n++"
         :payment="payment"
         :key="payment.id"
       />

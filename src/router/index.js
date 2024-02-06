@@ -38,6 +38,11 @@ const router = createRouter({
           path: '/pagos/:id',
           name: 'payments',
           component: () => import('@/views/PaymentsView.vue')
+        },
+        {
+          path: '/pagos/edit/:id',
+          name: 'edit-payment',
+          component: () => import('@/views/PaymentEditView.vue')
         }
       ]
     }
