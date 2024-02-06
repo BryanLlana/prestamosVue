@@ -6,5 +6,8 @@ export const loanApi = {
   },
   createLoan: async data => {
     return await api.post('/loans', data)
-  } 
+  },
+  getLoan: async id => {
+    return await api.get(`/loans/${id}`)
+  }
 }

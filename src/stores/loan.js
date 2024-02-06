@@ -12,6 +12,7 @@ export const useLoanStore = defineStore('loan', () => {
     date: '',
     customer: ''
   })
+  const loanPagos = ref({})
 
   const router = useRouter()
   const errorsInput = ref({})
@@ -60,6 +61,15 @@ export const useLoanStore = defineStore('loan', () => {
     }
   }
 
+  const getLoan = async id => {
+    try {
+      const { data } = await loanApi.getLoan(id)
+      loanPagos.value = data.loan
+    } catch (error) {
+      router.push({ name: 'loans' })
+    }
+  }
+
   const countPaymentsCompleted = computed(() => {
     return payments => payments.filter(p => p.state === true).length
   })
@@ -70,6 +80,8 @@ export const useLoanStore = defineStore('loan', () => {
     createLoan,
     countPaymentsCompleted,
     errorsInput,
-    alert
+    alert,
+    loanPagos,
+    getLoan
   }
 })
