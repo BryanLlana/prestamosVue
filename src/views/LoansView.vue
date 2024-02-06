@@ -1,6 +1,7 @@
 <script setup>
 import Loan from '@/components/Loan.vue';
-
+import { useLoanStore } from '@/stores/loan';
+const loanStore = useLoanStore()
 </script>
 
 <template>
@@ -15,7 +16,11 @@ import Loan from '@/components/Loan.vue';
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-3">
-      <Loan />
+      <Loan
+        v-for="loan in loanStore.loans"
+        :loan="loan"
+        :key="loan.id"
+      />
     </div>
   </div>
 </template>

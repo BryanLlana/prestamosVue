@@ -35,11 +35,6 @@ const router = createRouter({
           component: () => import('@/views/LoanNewView.vue')
         },
         {
-          path: '/prestamos/edit/:id',
-          name: 'edit-loan',
-          component: () => import('@/views/LoanEditView.vue')
-        },
-        {
           path: '/pagos/:id',
           name: 'payments',
           component: () => import('@/views/PaymentsView.vue')
