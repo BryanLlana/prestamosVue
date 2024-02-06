@@ -43,6 +43,11 @@ export const useCustomerStore = defineStore('customer', () => {
       const { data } = await customerApi.createCustomer(customer) 
       alert.message = data.message
       customers.value = [...customers.value, data.customer]
+      customer.name = ''
+      customer.lastName = ''
+      customer.address = ''
+      customer.phone = ''
+      customer.reference = ''
 
       setTimeout(() => {
         alert.message = ''
