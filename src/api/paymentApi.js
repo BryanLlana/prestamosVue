@@ -6,5 +6,8 @@ export const paymentApi = {
   },
   updatePayment: async (id, data) => {
     return await api.patch(`/payments/${id}`, data)
+  },
+  getPayments: async () => {
+    return await api.get('/payments')
   }
 }

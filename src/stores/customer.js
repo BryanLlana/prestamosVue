@@ -56,9 +56,16 @@ export const useCustomerStore = defineStore('customer', () => {
     } catch (error) {
       const errors = error.response.data.errors ?? ''
       if (errors) errorsInput.value = errors
+      const errorOne = error.response.data.error ?? ''
+      if (error) {
+        alert.message = errorOne
+        alert.error = true
+      }
 
       setTimeout(() => {
         errorsInput.value = {}
+        alert.message = ''
+        alert.error = false
       }, 3000)
     }
   }

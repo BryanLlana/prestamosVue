@@ -17,6 +17,7 @@ const loanStore = useLoanStore()
     <p class="text-gray-600 font-semibold">Interés: <span class="font-normal">{{ formatCurrency(loan.amount * loan.interest) }} ({{ loan.interest * 100 }}%)</span></p>
     <p class="text-gray-600 font-semibold">Pagos: <span class="font-normal">{{ loanStore.countPaymentsCompleted(loan.payments) }} de {{ loan.payments.length }}</span></p>
     <p class="text-gray-600 font-semibold">Fecha: <span class="font-normal">{{ displayDate(loan.date) }}</span></p>
+    <p v-if="loan.customer.reference" class="text-gray-600 font-semibold">Referencia: <span class="font-normal">{{ loan.customer.reference }}</span></p>
     <div class="flex pt-2 gap-4">
       <RouterLink
       :to="{ name: 'payments', params: { id: loan.id} }"

@@ -10,6 +10,11 @@ const router = createRouter({
       component: LayoutViewVue,
       children: [
         {
+          path: '/pagos-del-dia',
+          name: 'payments-of-day',
+          component: () => import('@/views/PaymentsOfDayView.vue')
+        },
+        {
           path: '/clientes',
           name: 'customers',
           component: () => import('@/views/CustomersView.vue')

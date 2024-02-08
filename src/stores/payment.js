@@ -12,6 +12,17 @@ export const usePaymentStore = defineStore('payment', () => {
     state: ''
   })
 
+  const payments = ref([])
+
+  const getPayments = async () => {
+    try {
+      const { data } = await paymentApi.getPayments()
+      payments.value = data.payments
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   const errorsInput = ref({})
   const alert = reactive({
     message: '',
@@ -50,6 +61,8 @@ export const usePaymentStore = defineStore('payment', () => {
 
   return {
     payment,
+    payments,
+    getPayments,
     getPaymentById,
     updatePayment,
     alert,

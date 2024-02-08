@@ -20,6 +20,11 @@ import { RouterLink } from 'vue-router'
             :to="{ name: 'loans' }"
           >Préstamos  
           </RouterLink>
+          <RouterLink
+            class="text-lg text-[#F1EFCC] font-semibold"
+            :to="{ name: 'payments-of-day' }"
+          >Pagos  
+          </RouterLink>
         </nav>
         <button
           type="button"
